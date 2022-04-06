@@ -24,7 +24,7 @@ public class Operand {
                Converter roman = new Converter(string);
                result = Integer.parseInt(roman.GetResult());
            }
-       if(result < 1 || result > 10) {throw new Exception("Вводимые числы должны быть в диапозоне от 1 до 10");}
+       if(result < 1 || result > 10) {throw new Exception("Вводимые числа должны быть в диапозоне от 1 до 10");}
        }
 
        catch (Exception ex){

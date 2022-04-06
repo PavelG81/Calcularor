@@ -5,15 +5,20 @@ public class Input {
     private Operand Op2;
     private char Operator;
     private boolean correct;
+    private boolean Quit;
 
     Input(){
         this.correct = true;
         System.out.println("Input:");
         Scanner inData = new Scanner(System.in);
         String expression = inData.nextLine();
+        if (expression.equals("q")) this.Quit = true;
+        else{
+            verify(expression);
+        }
 
         // Проверка выражения на требования условий задания
-       verify(expression);
+
     }
 
     public Operand GetOp1(){
@@ -27,6 +32,10 @@ public class Input {
     }
     public boolean GetCorrect() {
         return this.correct;
+    }
+
+    public boolean GetQuit() {
+        return this.Quit;
     }
 
     void verify(String exp){
@@ -43,7 +52,7 @@ public class Input {
     try {
         for (char c : charArray){
             for(char o: operatorsArray){
-                    if (counter > 1) throw new Exception("Калькулятор может выполнять только одно действие");
+                    if (counter > 1) throw new Exception("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
 
                     if (c==o){
                         counter++;
@@ -53,7 +62,7 @@ public class Input {
                 }
         }
 
-        if(counter == 0) throw new Exception("В выражении отсутствует известный калькулятору оператор!");
+        if(counter == 0) throw new Exception("Строка не является математической операцией!");
 
 
 
@@ -66,7 +75,7 @@ public class Input {
             this.Op1 = new Operand(stringOp1);
             this.Op2 = new Operand(stringOp2);
 
-        if (!Op1.GetCorrect() || !Op2.GetCorrect()) throw new Exception("Один или оба операнда не соответствует(ют) требованиям задания");
+        if (!Op1.GetCorrect() || !Op2.GetCorrect()) throw new Exception("Используются одновременно разные системы счисления");
 
     }
     catch (Exception ex){

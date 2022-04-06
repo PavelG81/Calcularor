@@ -1,18 +1,15 @@
 public class Result {
 
-   private boolean correct;
-   private char TypeResult;
+    private char TypeResult;
 
 
     Result(Input expression){
-
-        this.correct = true;
 
         try {
             var result_arabian = Calculation(expression);
 
         if(result_arabian < 1 && this.TypeResult == 'r'){
-            throw new Exception("В римских числах нет отрицательных чисел!");
+            throw new Exception("В римской системе счисления нет отрицательных чисел и нуля!");
         }
             String string = Integer.toString(result_arabian);
             if (this.TypeResult == 'r') {
@@ -59,7 +56,6 @@ public class Result {
     }
     catch (Exception ex){
         System.out.println(ex.getMessage());
-        this.correct = false;
         return 0;
 
     }
